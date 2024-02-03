@@ -41,7 +41,7 @@ export default class FullList implements List{
     // clear(): void{}
     addItem(itemObj: ListItem): void{
 
-        this._list.unshift(itemObj);
+        this._list.push(itemObj);
         this.save();
     }
 
@@ -56,15 +56,17 @@ export default class FullList implements List{
 
     editTask(buttonEL: HTMLButtonElement): any {
         const dataIndex: number= this._list.findIndex(item => item.id === buttonEL.parentElement!.id);
+        // const dataIndex: number = FullList.instance.list.length ? parseInt(FullList.instance.list[FullList.instance.list.length - 1].id) + 1 : 1; 
         const currentTask: ListItem = this._list[dataIndex];
         
         const titleInput = document.getElementById('title-input') as HTMLInputElement;
-        titleInput.value = currentTask.title;
         const dateInput = document.getElementById('date-input') as HTMLInputElement;
-        dateInput.value = currentTask.date;
         const descriptionInput = document.getElementById("description-input") as HTMLInputElement;
-        descriptionInput.value = currentTask.description;
+        currentTask.title = titleInput.value;
+        currentTask.date = dateInput.value;
+        currentTask.description = descriptionInput.value;
         document.getElementById('task-form')!.classList.toggle('hidden');
         document.getElementById('add-or-update-task-btn')!.innerText = "Update Task"
+        this.save();
     }
 }

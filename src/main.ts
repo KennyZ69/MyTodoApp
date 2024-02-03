@@ -28,10 +28,14 @@ const initApp = (): void =>{
     if(!titleValue) return
 
     const itemId = fullList.list.length ? parseInt(fullList.list[fullList.list.length - 1].id) + 1 : 1; 
+    console.log(itemId);
+    
     const newItem = new ListItem(itemId.toString(), titleInput.value, dateInput.value, descInput.value);
-
+ 
     fullList.addItem(newItem);
     taskForm.classList.toggle("hidden");
+    // itemId > 1 ? fullList.removeItem((itemId - 1).toString) : '';
+    // if(itemId > 1) fullList.removeItem((itemId - 1).toString());
     template.render(fullList);
   })
 
@@ -39,14 +43,17 @@ const initApp = (): void =>{
   closeTask.addEventListener('click', (e) => {
     e.preventDefault();
     taskForm.classList.toggle('hidden');
-    titleInput.value = "";
-    dateInput.value = "";
-    descInput.value = "";
+    // titleInput.value = "";
+    // dateInput.value = "";
+    // descInput.value = "";
   })
 
   addNewTask.addEventListener('click', (e) => {
     e.preventDefault;
     addOrUpdateTask.textContent = "Add Task";
+    titleInput.value = "";
+    dateInput.value = "";
+    descInput.value = "";
     
     taskForm.classList.toggle("hidden");
 })

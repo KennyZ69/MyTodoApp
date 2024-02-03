@@ -15,16 +15,16 @@ export default class ListTemplate implements DOMList{
     };
     clear(): void {
         this.div.innerHTML = ``;
-        this.div.innerHTML += `
-        <button id="open-task-form-btn" class="btn large-btn">
-        Add New Task
-        </button>
-        `;
+        // this.div.innerHTML += `
+        // <button id="open-task-form-btn" class="btn large-btn">
+        // Add New Task
+        // </button>
+        // `;
     }
 
     render(fullList: FullList): void {
         // const editTaskBtn = document.getElementById('editTaskBtn') as HTMLButtonElement;
-        // this.clear();
+        this.clear();
         fullList.list.forEach(item => {
             // this.div.innerHTML = `
             // <div class="task" id="${item.id}">
